@@ -21,6 +21,12 @@ Because I was getting tired to `pwd | xsel -b; 'edit painfully .bashrc by hand t
 
 
 
+`chmod +x install`
+
+
+
+
+
 `./install` (this will add adtp function to ~/.bashrc once)
 
 
@@ -31,7 +37,7 @@ Because I was getting tired to `pwd | xsel -b; 'edit painfully .bashrc by hand t
 
 
 
-`rm install` (these files are no longer needed)
+`rm install` (this file is no longer needed)
 
 # usage
 * go into a dir that you want added to $PATH
