@@ -65,8 +65,12 @@ add an option to delete an adtp entry, maybe with `-d` param
 My brilliant brain. 
 (just kidding. It's just a quick and  dirty hack)
 
-But if you're feeling grateful (I just saved YOU TENS OF SECONDS [and counting] to spend elsewhere after all- like playing Skyrim or CS:GO)...
+
+
+But if you're feeling grateful (I just saved YOU TENS OF SECONDS to play Skyrim or CS:GO)
 ...then why not a small crypto donation? 
+
+
 
 They say generosity it's good for your soul (and it also gets you closer to heaven).
 So you see, advantages all around: I get to eat, You get to feel better. :P 
