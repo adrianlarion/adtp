@@ -44,6 +44,18 @@ Because I was getting tired to `pwd | xsel -b; 'edit painfully .bashrc by hand t
 * `adtp`
 * done, bam, wham, thank you ma'am. 
 
+Behind the scenes it adds couple of lines like the following to your ~/.bashrc
+
+
+
+
+```
+# Exported automatically using adtp on [Fri  2 Oct 10:34:52 EEST 2020] by user [user]
+export PATH="/home/user/temp:$PATH"
+```
+
+
+
 ![Usage Example](./docs/usage_example.svg)
 
 # To Do
