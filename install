@@ -1,0 +1,39 @@
+#!/bin/bash 
+bashrc=$(cat ~/.bashrc)
+install_string="ADTP IS INSTALLED"
+
+function func_text(){
+echo ' # -----------------------------
+# START ADTP [ADTP IS INSTALLED]
+# makes it easy to add current dir to path
+
+function adtp(){
+   p=$(pwd)
+   export_path="export PATH="\"$p":\$PATH\""
+   bashrc=$(cat ~/.bashrc)
+   if [[ $bashrc =~ "$export_path" ]]
+   then
+     echo "$(tput setaf 1)[$export_path] it is already present in your .bashrc file. Exiting...$(tput sgr 0)"
+   else
+    echo  -e "\n# Exported automatically using adtp on [$(date)] by user [$(whoami)]" >> ~/.bashrc
+    echo $export_path >> ~/.bashrc
+    source  ~/.bashrc
+    echo "$(tput setaf 2) Added [$p] to .bashrc and sourced it $(tput sgr 0)"
+   fi
+ }
+export -f adtp
+# END ADTP
+# -----------------------------
+'
+}
+
+if [[ "$bashrc" =~ "$install_string" ]]
+then
+    echo "$(tput setaf 1) adtp it's already istalled (the  function is present in ~/.bashrc). Exiting..."
+    exit 1
+else
+    func_text >> ~/.bashrc
+    echo -e "\n" >> ~/.bashrc
+    echo "$(tput setaf 2)$(tput bold) adtp was installed succesfully (the function adtp was added to ~/.bashrc) $(tput sgr 0)"
+    exit 0
+fi 
