@@ -25,6 +25,9 @@ Because I was getting tired to `pwd | xsel -b; 'edit painfully .bashrc by hand t
 
 ![Usage Example](./docs/usage_example.svg)
 
+# To Do
+add an option to delete an adtp entry, maybe with `-d` param
+
 # Credits
 My brilliant brain. 
 (just kidding. It's just a quick and  dirty hack)
