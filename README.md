@@ -13,9 +13,24 @@ Because I was getting tired to `pwd | xsel -b; 'edit painfully .bashrc by hand t
 
 # install
 `cd ~/Downloads`
+
+
+
 `wget https://raw.githubusercontent.com/truffle-dog/adtp/main/install`
+
+
+
+
 `./install` (this will add adtp function to ~/.bashrc once)
+
+
+
+
 `source ~/.bashrc` (sadly you can't reliably source from a bash script, even with the -i flag. But you'll do it just this once and then you'll just `adtp` )
+
+
+
+
 `rm install` (these files are no longer needed)
 
 # usage
