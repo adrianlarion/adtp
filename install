@@ -8,7 +8,7 @@ echo '
 
 function _create_adtp(){
    p=$(pwd)
-   export_path="export path="\"$p":\$path\""
+   export_path="export PATH="\"$p":\$PATH\""
    bashrc=$(cat ~/.bashrc)
    if [[ $bashrc =~ "$export_path" ]]
    then
@@ -25,10 +25,10 @@ function _create_adtp(){
 
 function _delete_adtp(){
    p=$(pwd)
-   export_path="export path="\"$p":\$path\""
+   export_path="export path="\"$p":\$PATH\""
    control_string="exported automatically using adtp on"
    # get the line num of the path we want to remove from .bashrc
-   export_ln=$(sed -rn "\:export path=.*$p:=" ~/.bashrc)
+   export_ln=$(sed -rn "\:export PATH=.*$p:=" ~/.bashrc)
    if [[ $export_ln -gt 0 ]]; then 
    echo "$(tput setaf 2) removed path [$export_path] from .bashrc. next time you open the shell this path will not be exported anymore in .bashrc (it might still work in the current shell)$(tput sgr 0)"
    #backup .bashrc
@@ -39,7 +39,7 @@ function _delete_adtp(){
        /^\#.*$control_string/d
        }" ~/.bashrc
     # now remove the line containing the export path
-    sed -r  -i "\:export path=.*$p:d" ~/.bashrc
+    sed -r  -i "\:export PATH=.*$p:d" ~/.bashrc
     #source it
     else
     echo "$(tput setaf 1)cannnot find path [$export_path] in .bashrc. nothing to remove.$(tput sgr 0)" 
