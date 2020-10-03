@@ -2,6 +2,12 @@
 Add Dir To Path - or `adtp`
 One command to add current directory to $PATH and source ~/.bashrc. Doesn't add  duplicates. 
 
+# New features
+* Now there's also an uninstall option. 
+* Now you can remove the current dir from $PATH by running `adtp -d`
+* Now the script does a better job at removing and updating itself. 
+
+
 # why
 Because I was getting tired to `pwd | xsel -b; 'edit painfully .bashrc by hand to add the new path' ; source ~/.bashrc` over and over again. 
 
@@ -87,8 +93,11 @@ export PATH="/home/user/temp:$PATH"
 
 ![Usage Example](./docs/usage_example.svg)
 
-# To Do
-add an option to delete an adtp entry, maybe with `-d` param
+# WARNING
+this script modifies the contents of ~/.bashrc. While I have tested it on my own machine I don't know if it will work properly on other machines/distros.
+I took as many precautions as possible, both in code and in making a ~/.bashrc.bak just in case something goes wrong. 
+Nevertheless, things may go wrong. Use at your own risk (I'm not responsible for any consequences of using this script).
+You have been warned. 
 
 # Credits
 My brilliant brain. 
