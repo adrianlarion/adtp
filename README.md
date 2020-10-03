@@ -39,6 +39,35 @@ Because I was getting tired to `pwd | xsel -b; 'edit painfully .bashrc by hand t
 
 `rm install` (this file is no longer needed)
 
+
+# uninstall
+`cd ~/Downloads`
+
+
+
+`wget https://raw.githubusercontent.com/truffle-dog/adtp/main/uninstall`
+
+
+
+
+`chmod +x uninstall`
+
+
+
+
+
+`./uninstall` 
+
+
+
+
+`source ~/.bashrc` 
+
+
+
+
+`rm uninstall` (this file is no longer needed)
+
 # usage
 * go into a dir that you want added to $PATH
 * `adtp`

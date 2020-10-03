@@ -1,39 +1,73 @@
 #!/bin/bash 
 bashrc=$(cat ~/.bashrc)
-install_string="ADTP IS INSTALLED"
 
 function func_text(){
-echo ' # -----------------------------
-# START ADTP [ADTP IS INSTALLED]
+echo ' 
+#start adtp 78304b852dba 
 # makes it easy to add current dir to path
 
-function adtp(){
+function _create_adtp(){
    p=$(pwd)
-   export_path="export PATH="\"$p":\$PATH\""
+   export_path="export path="\"$p":\$path\""
    bashrc=$(cat ~/.bashrc)
    if [[ $bashrc =~ "$export_path" ]]
    then
-     echo "$(tput setaf 1)[$export_path] it is already present in your .bashrc file. Exiting...$(tput sgr 0)"
+     echo "$(tput setaf 1)[$export_path] it is already present in your .bashrc file. exiting...$(tput sgr 0)"
    else
-    echo  -e "\n# Exported automatically using adtp on [$(date)] by user [$(whoami)]" >> ~/.bashrc
+    echo  -e "\n# exported automatically using adtp on [$(date)] by user [$(whoami)]" >> ~/.bashrc
+    #backup
+    cp ~/.bashrc ~/.bashrc.bak
     echo $export_path >> ~/.bashrc
     source  ~/.bashrc
-    echo "$(tput setaf 2) Added [$p] to .bashrc and sourced it $(tput sgr 0)"
+    echo "$(tput setaf 2) added [$p] to .bashrc and sourced it $(tput sgr 0)"
    fi
+}
+
+function _delete_adtp(){
+   p=$(pwd)
+   export_path="export path="\"$p":\$path\""
+   control_string="exported automatically using adtp on"
+   # get the line num of the path we want to remove from .bashrc
+   export_ln=$(sed -rn "\:export path=.*$p:=" ~/.bashrc)
+   if [[ $export_ln -gt 0 ]]; then 
+   echo "$(tput setaf 2) removed path [$export_path] from .bashrc. next time you open the shell this path will not be exported anymore in .bashrc (it might still work in the current shell)$(tput sgr 0)"
+   #backup .bashrc
+   cp ~/.bashrc ~/.bashrc.bak
+   #get previous line (which supposedly contains the adtp comment. if it does remove it.)
+   prev_ln=$(($export_ln-1))
+   sed -r -i "$prev_ln {
+       /^\#.*$control_string/d
+       }" ~/.bashrc
+    # now remove the line containing the export path
+    sed -r  -i "\:export path=.*$p:d" ~/.bashrc
+    #source it
+    else
+    echo "$(tput setaf 1)cannnot find path [$export_path] in .bashrc. nothing to remove.$(tput sgr 0)" 
+    fi
+}
+
+
+function adtp(){
+    #primitive flags
+   if [[ $1 == "-d" ]];then
+    _delete_adtp
+    else
+    _create_adtp
+    fi
  }
 export -f adtp
-# END ADTP
-# -----------------------------
+#end adtp 78304b852dba 
 '
 }
 
-if [[ "$bashrc" =~ "$install_string" ]]
-then
-    echo "$(tput setaf 1) adtp it's already istalled (the  function is present in ~/.bashrc). Exiting..."
-    exit 1
-else
-    func_text >> ~/.bashrc
-    echo -e "\n" >> ~/.bashrc
-    echo "$(tput setaf 2)$(tput bold) adtp was installed succesfully (the function adtp was added to ~/.bashrc) $(tput sgr 0)"
-    exit 0
-fi 
+function delete_old(){
+cp ~/.bashrc ~/.bashrc.bak
+echo "$(tput setaf 3) trying to remove the old install...$(tput sgr 0)"
+sed -r -i '/^\#.*start adtp 78304b852dba/,/^\#.*end adtp 78304b852dba/d' ~/.bashrc
+}
+
+delete_old
+func_text >> ~/.bashrc
+echo -e "\n" >> ~/.bashrc
+echo "$(tput setaf 2)$(tput bold) adtp was installed succesfully (the function adtp was added to ~/.bashrc) $(tput sgr 0)"
+exit 0

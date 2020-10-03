@@ -1,0 +1,10 @@
+#!/bin/bash 
+
+function delete_old() {
+cp ~/.bashrc ~/.bashrc.bak
+echo "$(tput setaf 3) trying to remove the old install...$(tput sgr 0)"
+sed -r -i '/^\#.*start adtp 78304b852dba/,/^\#.*end adtp 78304b852dba/d' ~/.bashrc
+echo "$(tput setaf 2) uninstall done. $(tput sgr 0)"
+}
+
+delete_old
